@@ -35,10 +35,10 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 2
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
@@ -141,7 +141,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a61d77ebbfc97d540ba57ac2bc069c4b
+    spriteID: d03d537b7773d4c4cab5a6189ee6a476
     internalID: 0
     vertices: []
     indices: 
