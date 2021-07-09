@@ -26,7 +26,7 @@ public class FollowTargetCamera : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    public float lerp = 0.05f;
     void LateUpdate()
     {
 
@@ -37,7 +37,7 @@ public class FollowTargetCamera : MonoBehaviour
 
         newPos.z = Mathf.Min(newPos.z, maxZ);
         newPos.z = Mathf.Max(newPos.z, minZ);
-        transform.position = newPos;
+        transform.position = Vector3.Lerp(transform.position, newPos, lerp);
 
     }
 }
