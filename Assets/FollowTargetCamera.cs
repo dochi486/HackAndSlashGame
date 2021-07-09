@@ -12,12 +12,17 @@ public class FollowTargetCamera : MonoBehaviour
 
     void Start()
     {
-        offset = target.position - transform.position;
-        minX = moveableArea.transform.position.x +  moveableArea.center.x - moveableArea.size.x/2;
-        maxX = moveableArea.transform.position.x +  moveableArea.center.x + moveableArea.size.x/2;
+        var camera = GetComponent<Camera>();
 
-        minZ = moveableArea.transform.position.z +moveableArea.center.z - moveableArea.size.z/2;
-        maxZ = moveableArea.transform.position.z + moveableArea.center.z + moveableArea.size.z/2;
+        float height = 2f * camera.orthographicSize;
+        float width = height * camera.aspect;
+
+        offset = target.position - transform.position;
+        minX = width /2 +moveableArea.transform.position.x +  moveableArea.center.x - moveableArea.size.x/2;
+        maxX =-width /2+  moveableArea.transform.position.x +  moveableArea.center.x + moveableArea.size.x/2;
+
+        minZ =height/2 +  moveableArea.transform.position.z +moveableArea.center.z - moveableArea.size.z/2;
+        maxZ = -height/2 + moveableArea.transform.position.z + moveableArea.center.z + moveableArea.size.z/2;
 
     }
 
