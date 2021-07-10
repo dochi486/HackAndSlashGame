@@ -71,7 +71,8 @@ public class Player : MonoBehaviour
     IEnumerator JumpCo()
     {
 
-
+        State = StateType.Jump;
+        jumpState = JumpStateType.Jump;
         float jumpStartTime = Time.time;
         float jumpDuration = jumpYac[jumpYac.length - 1].time;
         jumpDuration *= jumpTimeMultiply;
@@ -85,8 +86,7 @@ public class Player : MonoBehaviour
             transform.Translate(0, y, 0);
             yield return null;
             sumEvaluateTime += Time.deltaTime;
-            State = StateType.Jump;
-            jumpState = JumpStateType.Jump;
+
 
         }
 
