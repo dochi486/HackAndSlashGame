@@ -650,6 +650,7 @@ MonoBehaviour:
   maxX: 0
   minZ: 0
   maxZ: 0
+  lerp: 0.05
 --- !u!1 &1874600721
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +855,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: mousePointer
       value: 
@@ -915,8 +920,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1604318138751898659, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604318138751898659, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3284631192987586562, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: m_FlipX

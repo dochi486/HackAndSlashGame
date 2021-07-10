@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     public JumpStateType jumpState;
     IEnumerator JumpCo()
     {
-       
+
 
         float jumpStartTime = Time.time;
         float jumpDuration = jumpYac[jumpYac.length - 1].time;
@@ -85,7 +85,8 @@ public class Player : MonoBehaviour
             transform.Translate(0, y, 0);
             yield return null;
             sumEvaluateTime += Time.deltaTime;
-            State = StateType.Jump; jumpState = JumpStateType.Jump;
+            State = StateType.Jump;
+            jumpState = JumpStateType.Jump;
 
         }
 
@@ -120,15 +121,16 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(Vector3.zero);
+                    transform.rotation = Quaternion.Euler(0,180,0);
                     spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
                 }
-
-                State = StateType.Walk;
+                if (jumpState != JumpStateType.Jump)
+                    State = StateType.Walk;
             }
             else
             {
-                State = StateType.Idle;
+                if (jumpState != JumpStateType.Jump)
+                    State = StateType.Idle;
             }
         }
     }
