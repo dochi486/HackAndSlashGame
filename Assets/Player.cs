@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +10,7 @@ public class Player : MonoBehaviour
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
 
     public Transform spriteTr;
-    
+
 
     private void Start()
     {
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour
         Jump,
         Attack,
     }
-    StateType state = StateType.Idle;
+    public StateType state = StateType.Idle;
     StateType State
     {
         get { return state; }
@@ -62,22 +61,17 @@ public class Player : MonoBehaviour
             if (state == value)
                 return;
             state = value;
-            //AnimationUpdate();
             animator.Play(state.ToString());
 
         }
     }
 
-    //private void AnimationUpdate()
-    //{
-    //    animator.Play(state.ToString());
-    //}
     Animator animator;
-    JumpStateType jumpState;
+    public JumpStateType jumpState;
     IEnumerator JumpCo()
     {
-        jumpState = JumpStateType.Jump;
-        State = StateType.Jump;
+       
+
         float jumpStartTime = Time.time;
         float jumpDuration = jumpYac[jumpYac.length - 1].time;
         jumpDuration *= jumpTimeMultiply;
@@ -91,6 +85,8 @@ public class Player : MonoBehaviour
             transform.Translate(0, y, 0);
             yield return null;
             sumEvaluateTime += Time.deltaTime;
+            State = StateType.Jump; jumpState = JumpStateType.Jump;
+
         }
 
         jumpState = JumpStateType.Ground;
@@ -117,7 +113,7 @@ public class Player : MonoBehaviour
                 //방향에 따라 오른쪽은 y가 0 sprite X 45도
                 //왼쪽은... y 180 sprite x -45
                 bool isRightSide = dir.x > 0;
-                if(isRightSide)
+                if (isRightSide)
                 {
                     transform.rotation = Quaternion.Euler(Vector3.zero);
                     spriteTr.rotation = Quaternion.Euler(45, 0, 0);
