@@ -87,7 +87,6 @@ public class Player : MonoBehaviour
             yield return null;
             sumEvaluateTime += Time.deltaTime;
 
-
         }
 
         jumpState = JumpStateType.Ground;
