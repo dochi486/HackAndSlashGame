@@ -18,12 +18,12 @@ public class FollowTargetCamera : MonoBehaviour
         float width = height * camera.aspect;
 
         offset = target.position - transform.position;
-        minX = width /2 +moveableArea.transform.position.x +  moveableArea.center.x - moveableArea.size.x/2;
-        maxX =-width /2+  moveableArea.transform.position.x +  moveableArea.center.x + moveableArea.size.x/2;
+        minX = width / 2 + moveableArea.transform.position.x + moveableArea.center.x - moveableArea.size.x / 2;
+        maxX = -width / 2 + moveableArea.transform.position.x + moveableArea.center.x + moveableArea.size.x / 2;
 
-        minZ =height/2 +  moveableArea.transform.position.z +moveableArea.center.z - moveableArea.size.z/2;
-        maxZ = -height/2 + moveableArea.transform.position.z + moveableArea.center.z + moveableArea.size.z/2;
-
+        minZ = height / 2 + moveableArea.transform.position.z + moveableArea.center.z - moveableArea.size.z / 2;
+        maxZ = -height / 2 + moveableArea.transform.position.z + moveableArea.center.z + moveableArea.size.z / 2;
+        //센터에서 x값의 반을 뺀 것이 최소랑.. 더한 게 최대..!에서 시작
     }
 
     public float lerp = 0.05f;

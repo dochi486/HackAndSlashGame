@@ -74,19 +74,18 @@ public class Player : MonoBehaviour
         State = StateType.Jump;
         jumpState = JumpStateType.Jump;
         float jumpStartTime = Time.time;
-        float jumpDuration = jumpYac[jumpYac.length - 1].time;
+        float jumpDuration = jumpYac[jumpYac.length - 1].time; //마지막키의 시간을 구하는 것
         jumpDuration *= jumpTimeMultiply;
         float jumpEndTime = jumpStartTime + jumpDuration;
         float sumEvaluateTime = 0;
 
         while (Time.time < jumpEndTime)
         {
-            float y = jumpYac.Evaluate(sumEvaluateTime / jumpTimeMultiply);
+            float y = jumpYac.Evaluate(sumEvaluateTime / jumpTimeMultiply); //evaluate는 키와 관계 없이 그래프 전체에 관련된 함수
             y *= jumpYMultiply;
             transform.Translate(0, y, 0);
             yield return null;
             sumEvaluateTime += Time.deltaTime;
-
         }
 
         jumpState = JumpStateType.Ground;
@@ -109,9 +108,6 @@ public class Player : MonoBehaviour
                 dir.Normalize();
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 
-
-                //방향에 따라 오른쪽은 y가 0 sprite X 45도
-                //왼쪽은... y 180 sprite x -45
                 bool isRightSide = dir.x > 0;
                 if (isRightSide)
                 {
@@ -120,7 +116,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    transform.rotation = Quaternion.Euler(0,180,0);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                     spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
                 }
                 if (jumpState != JumpStateType.Jump)
