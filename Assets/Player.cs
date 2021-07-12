@@ -25,12 +25,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //RaycastHit hit;
         Move();
         Jump();
-
         Dash();
     }
+    #region Dash
 
     public float dashableDistance = 10;
     public float dashableTime = 0.4f;
@@ -44,16 +43,19 @@ public class Player : MonoBehaviour
             mouseDownPosition = Input.mousePosition; //월드 포지션이 아닌 화면의 포지션
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (nextDashableTime < Time.time)
         {
-            bool isDashDrag = IsSuccessDashDrag();
-            if (isDashDrag)
+            if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                StartCoroutine(DashCo());
+                bool isDashDrag = IsSuccessDashDrag();
+                if (isDashDrag)
+                {
+                    nextDashableTime = Time.time + dashCoolTime;
+                    StartCoroutine(DashCo());
+                }
             }
         }
     }
-    #region Dash
 
     public float dashCoolTime = 2;
     public float nextDashableTime;  //다음 대쉬 가능한 시간 (대쉬 쿨타임에 사용하는 다음 대쉬타임??)
@@ -80,7 +82,6 @@ public class Player : MonoBehaviour
 
     private bool IsSuccessDashDrag()
     {
-
         //시간 체크
         float dragTime = Time.time - mouseDownTime;
         if (dragTime > dashableTime)
@@ -89,7 +90,6 @@ public class Player : MonoBehaviour
         float dragDistance = Vector3.Distance(mouseDownPosition, Input.mousePosition);
         if (dragDistance < dashableDistance)
             return false;
-
 
         return true;
     }
@@ -218,7 +218,7 @@ public class Player : MonoBehaviour
                 if (ChangeableState())
                     State = StateType.Idle;
             }
-            
+
             bool ChangeableState()
             {
                 if (jumpState == JumpStateType.Jump)
