@@ -116,6 +116,8 @@ public class Player : MonoBehaviour
             float moveableDistance = 0;
             // State가 Walk일 때 7(stopDistance) 사용, 
             // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
+            if (State == StateType.Idle)
+                moveableDistance = walkDistance;
 
 
             if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
