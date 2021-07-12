@@ -12,13 +12,15 @@ public class Player : MonoBehaviour
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
 
     public Transform spriteTr;
-
+    SpriteTrailRenderer.SpriteTrailRenderer spriteTrailRenderer;
 
     private void Start()
     {
         normalSpeed = speed;
         animator = GetComponentInChildren<Animator>();
         spriteTr = GetComponentInChildren<SpriteRenderer>().transform; //GetChild해도 자기자신이 우선
+        spriteTrailRenderer = GetComponentInChildren<SpriteTrailRenderer.SpriteTrailRenderer>();
+        spriteTrailRenderer.enabled = false;
     }
 
     void Update()
@@ -51,12 +53,16 @@ public class Player : MonoBehaviour
             }
         }
     }
+    #region Dash
 
+    public float dashCoolTime = 2;
+    public float nextDashableTime;  //다음 대쉬 가능한 시간 (대쉬 쿨타임에 사용하는 다음 대쉬타임??)
     public float dashTime = 0.3f; //dash하는 시간? 
     public float dashSpeedMultiply = 4f;
     Vector3 dashDirection;
     IEnumerator DashCo()
     {
+        spriteTrailRenderer.enabled = true;
         dashDirection = Input.mousePosition - mouseDownPosition;
 
         dashDirection.y = 0;
@@ -69,6 +75,7 @@ public class Player : MonoBehaviour
 
         speed = normalSpeed;
         State = StateType.Idle;
+        spriteTrailRenderer.enabled = false;
     }
 
     private bool IsSuccessDashDrag()
@@ -86,7 +93,7 @@ public class Player : MonoBehaviour
 
         return true;
     }
-
+    #endregion Dash
     private void Jump()
     {
 
