@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class Player : MonoBehaviour
 {
@@ -30,8 +31,9 @@ public class Player : MonoBehaviour
         Dash();
     }
     #region Dash
-
+    [Foldout("Dash")]
     public float dashableDistance = 10;
+    [Foldout("Dash")]
     public float dashableTime = 0.4f;
     float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
     Vector3 mouseDownPosition;
@@ -56,10 +58,13 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    [Foldout("Dash")]
     public float dashCoolTime = 2;
+    [Foldout("Dash")]
     public float nextDashableTime;  //다음 대쉬 가능한 시간 (대쉬 쿨타임에 사용하는 다음 대쉬타임??)
+    [Foldout("Dash")]
     public float dashTime = 0.3f; //dash하는 시간? 
+    [Foldout("Dash")]
     public float dashSpeedMultiply = 4f;
     Vector3 dashDirection;
     IEnumerator DashCo()
