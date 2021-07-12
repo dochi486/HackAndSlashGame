@@ -864,8 +864,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 524441830}
     - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: jumpYMultiply
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: jumpTimeMultiply
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1982417188, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: m_AngularSpeed
@@ -931,5 +935,9 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284631192987586562, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d36e1ca2c57149499679f248df2cc8b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215958ef3a59a9642b909863b00810b3, type: 3}

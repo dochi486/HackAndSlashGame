@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         Idle,
         Walk,
         Jump,
+        Fall,
         Attack,
     }
     public StateType state = StateType.Idle;
@@ -78,6 +79,7 @@ public class Player : MonoBehaviour
         jumpDuration *= jumpTimeMultiply;
         float jumpEndTime = jumpStartTime + jumpDuration;
         float sumEvaluateTime = 0;
+        float previousY = 0;
 
         while (Time.time < jumpEndTime)
         {
@@ -85,7 +87,14 @@ public class Player : MonoBehaviour
             y *= jumpYMultiply;
             transform.Translate(0, y, 0);
             yield return null;
+
+            if(previousY > y)
+            {
+                State = StateType.Fall;
+            }
+            previousY = y;
             sumEvaluateTime += Time.deltaTime;
+
         }
 
         jumpState = JumpStateType.Ground;
