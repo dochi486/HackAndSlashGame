@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
 
     public float dashableDistance = 10;
     public float dashableTime = 0.4f;
-    public float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
-    public Vector3 mouseDownPosition;
+    float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
+    Vector3 mouseDownPosition;
     private void Dash()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -164,7 +164,6 @@ public class Player : MonoBehaviour
             }
             previousY = y;
             sumEvaluateTime += Time.deltaTime;
-
         }
 
         jumpState = JumpStateType.Ground;
@@ -187,7 +186,6 @@ public class Player : MonoBehaviour
             // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
             if (State == StateType.Idle)
                 moveableDistance = walkDistance;
-
 
             if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
