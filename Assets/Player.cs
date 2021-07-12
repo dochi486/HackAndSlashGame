@@ -4,11 +4,12 @@ using NaughtyAttributes;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5;
+    [BoxGroup("Move")] public float speed = 5;
     float normalSpeed;
-    public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
-    public float stopDistance = 7;
-    public Transform mousePointer;
+    [BoxGroup("Move")] public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
+    [BoxGroup("Move")] public float stopDistance = 7;
+    [BoxGroup("Move")] public Transform mousePointer;
+    [BoxGroup("Jump")]
     public AnimationCurve jumpYac;
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
 
@@ -109,8 +110,8 @@ public class Player : MonoBehaviour
             StartCoroutine(JumpCo());
         }
     }
-    public float jumpYMultiply = 20;
-    public float jumpTimeMultiply = 1;
+    [BoxGroup("Jump")] public float jumpYMultiply = 20;
+    [BoxGroup("Jump")] public float jumpTimeMultiply = 1;
 
 
     public enum JumpStateType
@@ -143,7 +144,7 @@ public class Player : MonoBehaviour
     }
 
     Animator animator;
-    public JumpStateType jumpState;
+    [BoxGroup("Jump")] public JumpStateType jumpState;
     IEnumerator JumpCo()
     {
 

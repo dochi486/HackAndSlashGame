@@ -656,35 +656,6 @@ MonoBehaviour:
   minZ: 0
   maxZ: 0
   lerp: 0.05
---- !u!1 &1599232253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1564451458174632475, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-  m_PrefabInstance: {fileID: 1604318139298431672}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1599232254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599232253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a957e37da95464baa8067fc6756f4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startScale: {x: 1, y: 1}
-  _endScale: {x: 1, y: 1}
-  _trailLifetime: 1
-  _spawnType: 0
-  _timeBetweenTrailSpawn: 0.5
-  _distanceBetweenTrailSpawn: 0
-  _alphaUpdateOn: 0
-  _maxAlpha: 0
-  _minAlpha: 0
-  _useSolidColors: 0
-  _rainbowMode: 0
-  _userSelectedColorPalette: []
 --- !u!1 &1874600721
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,54 +855,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455860879, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
     - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: mousePointer
       value: 
       objectReference: {fileID: 524441830}
-    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: stopDistance
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: walkDistance
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: jumpYMultiply
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: jumpTimeMultiply
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: moveableDistance
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1982417188, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1604318137320213401, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -980,21 +907,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1604318138751898659, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1604318138751898659, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284631192987586562, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284631192987586562, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3d36e1ca2c57149499679f248df2cc8b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215958ef3a59a9642b909863b00810b3, type: 3}

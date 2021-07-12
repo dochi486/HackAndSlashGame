@@ -27,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455860878}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0.4, y: 8.1, z: -2.1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.42, y: 7.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1604318137320213402}
@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 1604318138751898659}
   - component: {fileID: 3284631192987586562}
   - component: {fileID: 8196809430881642758}
+  - component: {fileID: 1599232257}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -137,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564451458174632475}
   m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 19.4, z: 10.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1604318137320213402}
@@ -162,7 +163,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3d36e1ca2c57149499679f248df2cc8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,6 +214,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1599232257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564451458174632475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a957e37da95464baa8067fc6756f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startScale: {x: 1, y: 1}
+  _endScale: {x: 1, y: 1}
+  _trailLifetime: 0.2
+  _spawnType: 1
+  _timeBetweenTrailSpawn: 0.01
+  _distanceBetweenTrailSpawn: 2
+  _alphaUpdateOn: 1
+  _maxAlpha: 0.5
+  _minAlpha: 0
+  _useSolidColors: 0
+  _rainbowMode: 0
+  _userSelectedColorPalette: []
 --- !u!1 &1604318137320213401
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  moveableDistance: 3
+  walkDistance: 12
+  stopDistance: 7
   mousePointer: {fileID: 0}
   jumpYac:
     serializedVersion: 2
@@ -295,7 +321,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpYMultiply: 50
+  spriteTr: {fileID: 0}
+  dashableDistance: 10
+  dashableTime: 0.4
+  dashCoolTime: 2
+  nextDashableTime: 0
+  dashTime: 0.3
+  dashSpeedMultiply: 4
+  jumpYMultiply: 60
+  jumpTimeMultiply: 0.8
+  state: 0
+  jumpState: 0
 --- !u!195 &1982417188
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -309,7 +345,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
