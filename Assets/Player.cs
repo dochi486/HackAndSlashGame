@@ -4,7 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5;
-    public float moveableDistance = 3; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
+    public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
+    public float stopDistance = 7;
     public Transform mousePointer;
     public AnimationCurve jumpYac;
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
@@ -111,7 +112,13 @@ public class Player : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             mousePointer.position = hitPoint;
             float distance = Vector3.Distance(hitPoint, transform.position);
-            if (distance > moveableDistance)
+
+            float moveableDistance = 0;
+            // State가 Walk일 때 7(stopDistance) 사용, 
+            // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
+
+
+            if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
                 var dir = hitPoint - transform.position;
                 dir.Normalize();
