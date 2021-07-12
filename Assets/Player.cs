@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5;
+    float normalSpeed;
     public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
     public float stopDistance = 7;
     public Transform mousePointer;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        normalSpeed = speed;
         animator = GetComponentInChildren<Animator>();
         spriteTr = GetComponentInChildren<SpriteRenderer>().transform; //GetChild해도 자기자신이 우선
     }
@@ -24,6 +26,65 @@ public class Player : MonoBehaviour
         //RaycastHit hit;
         Move();
         Jump();
+
+        Dash();
+    }
+
+    public float dashableDistance = 10;
+    public float dashableTime = 0.4f;
+    public float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
+    public Vector3 mouseDownPosition;
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            mouseDownTime = Time.time;
+            mouseDownPosition = Input.mousePosition; //월드 포지션이 아닌 화면의 포지션
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            bool isDashDrag = IsSuccessDashDrag();
+            if (isDashDrag)
+            {
+                StartCoroutine(DashCo());
+            }
+        }
+    }
+
+    public float dashTime = 0.3f; //dash하는 시간? 
+    public float dashSpeedMultiply = 4f;
+    Vector3 dashDirection;
+    IEnumerator DashCo()
+    {
+        dashDirection = Input.mousePosition - mouseDownPosition;
+
+        dashDirection.y = 0;
+        dashDirection.z = 0;
+        dashDirection.Normalize();
+
+        speed = normalSpeed * dashSpeedMultiply;
+        State = StateType.Dash;
+        yield return new WaitForSeconds(dashTime);
+
+        speed = normalSpeed;
+        State = StateType.Idle;
+    }
+
+    private bool IsSuccessDashDrag()
+    {
+
+        //시간 체크
+        float dragTime = Time.time - mouseDownTime;
+        if (dragTime > dashableTime)
+            return false;
+        //거리 체크해서 
+        float dragDistance = Vector3.Distance(mouseDownPosition, Input.mousePosition);
+        if (dragDistance < dashableDistance)
+            return false;
+
+
+        return true;
     }
 
     private void Jump()
@@ -53,6 +114,7 @@ public class Player : MonoBehaviour
         Jump,
         Fall,
         Attack,
+        Dash,
     }
     public StateType state = StateType.Idle;
     StateType State
@@ -89,7 +151,7 @@ public class Player : MonoBehaviour
             transform.Translate(0, y, 0);
             yield return null;
 
-            if(previousY > y)
+            if (previousY > y)
             {
                 State = StateType.Fall;
             }
@@ -113,7 +175,7 @@ public class Player : MonoBehaviour
             mousePointer.position = hitPoint;
             float distance = Vector3.Distance(hitPoint, transform.position);
 
-            float moveableDistance = 0;
+            float moveableDistance = stopDistance;
             // State가 Walk일 때 7(stopDistance) 사용, 
             // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
             if (State == StateType.Idle)
@@ -124,6 +186,10 @@ public class Player : MonoBehaviour
             {
                 var dir = hitPoint - transform.position;
                 dir.Normalize();
+
+                if (State == StateType.Dash)
+                    dir = dashDirection;
+
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 
                 bool isRightSide = dir.x > 0;
@@ -137,13 +203,24 @@ public class Player : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                     spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
                 }
-                if (jumpState != JumpStateType.Jump)
+                if (ChangeableState())
                     State = StateType.Walk;
             }
             else
             {
-                if (jumpState != JumpStateType.Jump)
+                if (ChangeableState())
                     State = StateType.Idle;
+            }
+            
+            bool ChangeableState()
+            {
+                if (jumpState == JumpStateType.Jump)
+                    return false;
+
+                if (state == StateType.Dash)
+                    return false;
+
+                return true;
             }
         }
     }

@@ -656,6 +656,35 @@ MonoBehaviour:
   minZ: 0
   maxZ: 0
   lerp: 0.05
+--- !u!1 &1599232253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1564451458174632475, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+  m_PrefabInstance: {fileID: 1604318139298431672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1599232254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599232253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a957e37da95464baa8067fc6756f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startScale: {x: 1, y: 1}
+  _endScale: {x: 1, y: 1}
+  _trailLifetime: 1
+  _spawnType: 0
+  _timeBetweenTrailSpawn: 0.5
+  _distanceBetweenTrailSpawn: 0
+  _alphaUpdateOn: 0
+  _maxAlpha: 0
+  _minAlpha: 0
+  _useSolidColors: 0
+  _rainbowMode: 0
+  _userSelectedColorPalette: []
 --- !u!1 &1874600721
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +908,14 @@ PrefabInstance:
       propertyPath: mousePointer
       value: 
       objectReference: {fileID: 524441830}
+    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: stopDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: walkDistance
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: jumpYMultiply
       value: 60
