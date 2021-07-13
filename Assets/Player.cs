@@ -9,13 +9,13 @@ public class Player : MonoBehaviour
     [BoxGroup("Move")] public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
     [BoxGroup("Move")] public float stopDistance = 7;
     [BoxGroup("Move")] public Transform mousePointer;
-    [BoxGroup("Jump")]
-    public AnimationCurve jumpYac;
+    [BoxGroup("Jump")] public AnimationCurve jumpYac;
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
+    //가상의 평면을 만들어서 그 위에 Ray를 쏘도록 하는 것?
 
     public Transform spriteTr;
     SpriteTrailRenderer.SpriteTrailRenderer spriteTrailRenderer;
-
+    //네임스페이스와 클래스의 이름이 같아서 네임스페이스.클래스 이렇게 선언해줬다. using문으로는 네임스페이스와 클래스의 구분이 모호해서
     private void Start()
     {
         normalSpeed = speed;
@@ -35,15 +35,15 @@ public class Player : MonoBehaviour
     [Foldout("Dash")]
     public float dashableDistance = 10;
     [Foldout("Dash")]
-    public float dashableTime = 0.4f;
+    public float dashableTime = 0.4f; //0.4초 안에 드래그해서 KeyUp이 발생해야 dash가 되는 시간을 의미함
     float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
     Vector3 mouseDownPosition;
     private void Dash()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            mouseDownTime = Time.time;
-            mouseDownPosition = Input.mousePosition; //월드 포지션이 아닌 화면의 포지션
+            mouseDownTime = Time.time; //현재시간
+            mouseDownPosition = Input.mousePosition; //월드 포지션이 아닌 화면(해상도)의 포지션
         }
 
         if (nextDashableTime < Time.time)
@@ -112,7 +112,6 @@ public class Player : MonoBehaviour
     }
     [BoxGroup("Jump")] public float jumpYMultiply = 20;
     [BoxGroup("Jump")] public float jumpTimeMultiply = 1;
-
 
     public enum JumpStateType
     {
