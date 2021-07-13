@@ -41,7 +41,21 @@ public class Goblin : MonoBehaviour
         {
             Vector3 toPlayerDriection = player.transform.position - transform.position;
             toPlayerDriection.Normalize();
-            transform.Translate(toPlayerDriection * speed * Time.deltaTime);
+            transform.Translate(toPlayerDriection * speed * Time.deltaTime, Space.World);
+
+
+            bool isRightSide = toPlayerDriection.x > 0;
+            if (isRightSide)
+            {
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                //spriteTr.rotation = Quaternion.Euler(45, 0, 0); 이제 부모가 회전한대로 그대로 따라가며 ㄴ돼서 필요없다!
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                //spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
+            }
+
             yield return null; ;
         }
     }

@@ -694,20 +694,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2181160928102191385, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
   m_PrefabInstance: {fileID: 3143573786077948467}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1603668775
-MonoBehaviour:
+--- !u!195 &1603668775
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1603668774}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa66f3f017e2d84f8f456b93b52981f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRange: 40
-  speed: 20
+  m_AgentTypeID: 0
+  m_Radius: 1.98
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1874600721
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +987,14 @@ PrefabInstance:
       propertyPath: jumpYac.m_Curve.Array.data[1].tangentMode
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 1982417188, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: m_Radius
+      value: 3.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982417188, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: avoidancePriority
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1604318137320213401, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1133,17 +1149,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 645801343, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
+      propertyPath: m_Name
+      value: Shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 645801344, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 645801344, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 995644201706546769, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 995644201706546769, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 995644201706546769, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.6
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 995644201706546769, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1180,26 +1208,6 @@ PrefabInstance:
     - target: {fileID: 2181160928102191385, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_Name
       value: Goblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499587811519925844, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.414
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499587811519925844, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499587811519925844, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499587811519925844, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499587811519925844, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
