@@ -920,6 +920,10 @@ PrefabInstance:
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
+      propertyPath: attackTime
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982417187, guid: 215958ef3a59a9642b909863b00810b3, type: 3}
       propertyPath: mousePointer
       value: 
       objectReference: {fileID: 524441830}

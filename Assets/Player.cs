@@ -35,10 +35,34 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Jump();
-        Dash();
+        if (State != StateType.Attack)
+        {
+            Move();
+            Jump();
+        }
+        bool isSucceedDash = Dash();
+        Attack(isSucceedDash);
     }
+
+    private void Attack(bool isSucceedDash)
+    {
+        if (isSucceedDash)
+            return;
+        //마우스 왼쪽버튼을 뗏을 때 (키업), 다운은 대쉬로 해놨으니까 대쉬할 때와 상태가 겹치지 않도록?
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            StartCoroutine(AttackCo());
+        }
+    }
+    public float attackTime = 1;
+    IEnumerator AttackCo()
+    {
+        State = StateType.Attack;
+        yield return new WaitForSeconds(attackTime);
+        State = StateType.Idle;
+    }
+
+
     #region Dash
     [Foldout("Dash")]
     public float dashableDistance = 10;
@@ -46,7 +70,7 @@ public class Player : MonoBehaviour
     public float dashableTime = 0.4f; //0.4초 안에 드래그해서 KeyUp이 발생해야 dash가 되는 시간을 의미함
     float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
     Vector3 mouseDownPosition;
-    private void Dash()
+    private bool Dash()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -63,9 +87,11 @@ public class Player : MonoBehaviour
                 {
                     nextDashableTime = Time.time + dashCoolTime;
                     StartCoroutine(DashCo());
+                    return true;
                 }
             }
         }
+        return false;
     }
     [Foldout("Dash")]
     public float dashCoolTime = 2;
@@ -188,7 +214,14 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        if (Time.timeScale == 0)
+            return;
+
+        if (State == StateType.Attack)
+            return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
 
         float enter = 0.0f;
         if (plane.Raycast(ray, out enter))
@@ -206,7 +239,7 @@ public class Player : MonoBehaviour
             dir = hitPoint - transform.position;
             if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
-             
+
                 dir.Normalize();
 
                 if (State == StateType.Dash)
@@ -242,6 +275,9 @@ public class Player : MonoBehaviour
                 return false;
 
             if (state == StateType.Dash)
+                return false;
+
+            if (state == StateType.Attack)
                 return false;
 
             return true;
