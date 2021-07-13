@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
-using NaughtyAttributes;
 using UnityEngine.AI;
 
 public class Player : MonoBehaviour
@@ -202,10 +202,11 @@ public class Player : MonoBehaviour
             // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
             if (State == StateType.Idle)
                 moveableDistance = walkDistance;
-
+            Vector3 dir = Vector3.zero;
+            dir = hitPoint - transform.position;
             if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
-                var dir = hitPoint - transform.position;
+             
                 dir.Normalize();
 
                 if (State == StateType.Dash)
@@ -213,17 +214,6 @@ public class Player : MonoBehaviour
 
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 
-                bool isRightSide = dir.x > 0;
-                if (isRightSide)
-                {
-                    transform.rotation = Quaternion.Euler(Vector3.zero);
-                    //spriteTr.rotation = Quaternion.Euler(45, 0, 0); 이제 부모가 회전한대로 그대로 따라가며 ㄴ돼서 필요없다!
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                    //spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
-                }
                 if (ChangeableState())
                     State = StateType.Walk;
             }
@@ -233,16 +223,29 @@ public class Player : MonoBehaviour
                     State = StateType.Idle;
             }
 
-            bool ChangeableState()
+            bool isRightSide = dir.x > 0;
+            if (isRightSide)
             {
-                if (jumpState == JumpStateType.Jump)
-                    return false;
-
-                if (state == StateType.Dash)
-                    return false;
-
-                return true;
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                //spriteTr.rotation = Quaternion.Euler(45, 0, 0); 이제 부모가 회전한대로 그대로 따라가며 ㄴ돼서 필요없다!
             }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                //spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
+            }
+
+        }
+        bool ChangeableState()
+        {
+            if (jumpState == JumpStateType.Jump)
+                return false;
+
+            if (state == StateType.Dash)
+                return false;
+
+            return true;
         }
     }
 }
+
