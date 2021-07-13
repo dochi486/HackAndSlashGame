@@ -217,9 +217,6 @@ public class Player : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
-        if (State == StateType.Attack)
-            return;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
@@ -275,9 +272,6 @@ public class Player : MonoBehaviour
                 return false;
 
             if (state == StateType.Dash)
-                return false;
-
-            if (state == StateType.Attack)
                 return false;
 
             return true;
