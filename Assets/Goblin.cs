@@ -77,7 +77,8 @@ public class Goblin : MonoBehaviour
             if ((Vector3.Distance(transform.position, player.transform.position) < attackRange))
             {
                 CurrentFSM = AttackFSM;
-                yield break; //실행하고 있는 코루틴을 빠져나가는 문장
+                yield break; 
+                //실행하고 있는 코루틴을 빠져나가는 문장
                 //나가면 다음 코루틴 지정한 곳(공격)으로 나간다?
             }
             yield return null;
