@@ -18,12 +18,13 @@ public class Player : MonoBehaviour
     [BoxGroup("Move")] public float stopDistance = 7;
     [BoxGroup("Move")] public Transform mousePointer;
     [BoxGroup("Jump")] public AnimationCurve jumpYac;
-    Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
-    //가상의 평면을 만들어서 그 위에 Ray를 쏘도록 하는 것?
+    Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀라이즈된 방향??
+    //가상의 무한한 평면을 만들어서 그 위에 Ray를 쏘고 감지하기 위한 용도
     NavMeshAgent agent;
     public Transform spriteTr;
     SpriteTrailRenderer.SpriteTrailRenderer spriteTrailRenderer;
-    //네임스페이스와 클래스의 이름이 같아서 네임스페이스.클래스 이렇게 선언해줬다. using문으로는 네임스페이스와 클래스의 구분이 모호해서
+    //네임스페이스와 클래스의 이름이 같아서 네임스페이스.클래스 이렇게 선언해줬다.
+    //using문으로는 네임스페이스와 클래스의 구분이 모호해서
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
