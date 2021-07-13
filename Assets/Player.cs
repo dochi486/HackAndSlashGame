@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     [BoxGroup("Move")] public float speed = 5;
     float normalSpeed;
     [BoxGroup("Move")] public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
