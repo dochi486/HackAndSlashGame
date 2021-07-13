@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
     }
+
     [BoxGroup("Move")] public float speed = 5;
     float normalSpeed;
     [BoxGroup("Move")] public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
 
         return true;
     }
-
+    #region AttackAndDamage
     private void Attack(bool isSucceedDash)
     {
         if (isSucceedDash)
@@ -116,6 +117,7 @@ public class Player : MonoBehaviour
         else
             StartCoroutine(DeathCo()); //죽을 때 피격모션 1회 플레이 후 죽도록
     }
+    #endregion AttackAndDamage
 
     #region Dash
     [Foldout("Dash")]
@@ -189,6 +191,8 @@ public class Player : MonoBehaviour
         return true;
     }
     #endregion Dash
+
+    #region Jump
     private void Jump()
     {
 
@@ -208,32 +212,6 @@ public class Player : MonoBehaviour
         Jump,
     }
 
-    public enum StateType
-    {
-        Idle,
-        Walk,
-        Jump,
-        Fall,
-        Attack,
-        Dash,
-        TakeHit,
-        Death,
-    }
-    public StateType state = StateType.Idle;
-    StateType State
-    {
-        get { return state; }
-        set
-        {
-            if (state == value)
-                return;
-            state = value;
-            animator.Play(state.ToString());
-
-        }
-    }
-
-    Animator animator;
     [BoxGroup("Jump")] public JumpStateType jumpState;
     IEnumerator JumpCo()
     {
@@ -269,6 +247,35 @@ public class Player : MonoBehaviour
         State = StateType.Idle;
     }
 
+    #endregion Jump
+
+    #region State
+    public enum StateType
+    {
+        Idle,
+        Walk,
+        Jump,
+        Fall,
+        Attack,
+        Dash,
+        TakeHit,
+        Death,
+    }
+    public StateType state = StateType.Idle;
+    StateType State
+    {
+        get { return state; }
+        set
+        {
+            if (state == value)
+                return;
+            state = value;
+            animator.Play(state.ToString());
+
+        }
+    }
+    #endregion State
+    Animator animator;
     private void Move()
     {
         if (Time.timeScale == 0)

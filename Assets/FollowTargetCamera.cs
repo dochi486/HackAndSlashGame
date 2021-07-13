@@ -18,7 +18,7 @@ public class FollowTargetCamera : MonoBehaviour
         float width = height * camera.aspect;
 
         offset = target.position - transform.position;
-        offset.x = 0;
+        offset.x = 0; //왜 바꿨더라????
         minX = width / 2 + moveableArea.transform.position.x + moveableArea.center.x - moveableArea.size.x / 2;
         maxX = -width / 2 + moveableArea.transform.position.x + moveableArea.center.x + moveableArea.size.x / 2;
 

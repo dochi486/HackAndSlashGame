@@ -80,9 +80,7 @@ public class Goblin : MonoBehaviour
                 yield break; //실행하고 있는 코루틴을 빠져나가는 문장
                 //나가면 다음 코루틴 지정한 곳(공격)으로 나간다?
             }
-
             yield return null;
-
         }
     }
     public float attackTime = 1;//공격하고 있는 시간
@@ -96,7 +94,6 @@ public class Goblin : MonoBehaviour
         {
             player.TakeHit(power);
         }
-
         yield return new WaitForSeconds(attackTime - attackApplyTime);
         CurrentFSM = ChaseFSM;
     }
