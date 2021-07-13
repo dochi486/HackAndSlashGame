@@ -5,16 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerStatusUI : MonoBehaviour
 {
-    public Image hpFull;
-    public Image hpTemp;
+   
+    Image hpTemp;
+    Text hpText;
+    float hpMax = 100;
+    //Player.StateType state;
     void Start()
     {
-      
+        hpTemp = GetComponent<Image>();
+        hpText = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        hpTemp.fillAmount = Player.instance.hp / hpMax;
+        hpText.text = ($"{Player.instance.hp}/100");
+
     }
 }

@@ -58,6 +58,7 @@ public class Goblin : MonoBehaviour
     IEnumerator ChaseFSM()
     {
         animator.Play("Run");
+        yield return null;
         while (true)
         {
             Vector3 toPlayerDriection = player.transform.position - transform.position;
