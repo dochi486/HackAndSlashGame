@@ -67,15 +67,52 @@ public class Player : MonoBehaviour
         }
     }
     public float attackTime = 1;
-
+    public float attackApplyTime = 0.2f;
+    public LayerMask enemyLayer;
+    public SphereCollider attackCollider;
+    public float power = 10;
     IEnumerator AttackCo()
     {
         State = StateType.Attack;
+        yield return new WaitForSeconds(attackApplyTime);
+
+        var enemyColliders = Physics.OverlapSphere(attackCollider.transform.position, attackCollider.radius, enemyLayer);
+            foreach (var item in enemyColliders)
+        {
+            item.GetComponent<Goblin>().TakeHit(power);
+        }
 
         yield return new WaitForSeconds(attackTime);
         State = StateType.Idle;
     }
+    public float hp = 100;
+    internal void TakeHit(int damage)
+    {
+        if (State == StateType.Death)
+            return;
 
+        hp -= damage;
+        StartCoroutine(TakeHitCo());
+    }
+    public float deathTime = 0.3f;
+    IEnumerator DeathCo()
+    {
+        State = StateType.Death;
+        yield return new WaitForSeconds(deathTime);
+        Debug.LogWarning("게임 종료");
+    }
+
+    public float takeHitTime = 0.3f;
+    IEnumerator TakeHitCo()
+    {
+        State = StateType.TakeHit;
+        yield return new WaitForSeconds(takeHitTime);
+
+        if (hp > 0)
+            State = StateType.Idle;
+        else
+            StartCoroutine(DeathCo()); //죽을 때 피격모션 1회 플레이 후 죽도록
+    }
 
     #region Dash
     [Foldout("Dash")]
@@ -106,34 +143,6 @@ public class Player : MonoBehaviour
             }
         }
         return false;
-    }
-    public float hp = 100;
-    internal void TakeHit(int damage)
-    {
-        if (State == StateType.Death)
-            return;
-
-        hp -= damage;
-        StartCoroutine(TakeHitCo());
-    }
-    public float deathTime = 0.3f;
-    IEnumerator DeathCo()
-    {
-        State = StateType.Death;
-        yield return new WaitForSeconds(deathTime);
-        Debug.LogWarning("게임 종료");
-    }
-
-    public float takeHitTime = 0.3f;
-    IEnumerator TakeHitCo()
-    {
-        State = StateType.TakeHit;
-        yield return new WaitForSeconds(takeHitTime);
-
-        if (hp > 0)
-            State = StateType.Idle;
-        else
-            StartCoroutine(DeathCo()); //죽을 때 피격모션 1회 플레이 후 죽도록
     }
 
     [Foldout("Dash")]
@@ -277,16 +286,17 @@ public class Player : MonoBehaviour
             // Idle에서 Walk로 갈 때는 12(walkDistance) 사용
             if (State == StateType.Idle)
                 moveableDistance = walkDistance;
+
             Vector3 dir = Vector3.zero;
             dir = hitPoint - transform.position;
-            if (distance > moveableDistance) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
+
+            if (State == StateType.Dash)
+                dir = dashDirection;
+
+            dir.Normalize();
+
+            if (distance > moveableDistance || State == StateType.Dash ) //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
-
-                dir.Normalize();
-
-                if (State == StateType.Dash)
-                    dir = dashDirection;
-
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 
                 if (ChangeableState())

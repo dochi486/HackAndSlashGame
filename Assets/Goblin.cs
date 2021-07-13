@@ -13,14 +13,26 @@ public class Goblin : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         player = Player.instance;
 
-        currentFSM = IdleFSM;
+        CurrentFSM = IdleFSM;
         while (true) //FSM을 무한히 반복해서 실행하는 부분
         {
-            yield return StartCoroutine(currentFSM());
+            fsmHandle = StartCoroutine(CurrentFSM());
+            while (fsmHandle != null)
+                yield return null;
         }
     }
-
-    Func<IEnumerator> currentFSM; //반환형이 IEnumerator로 있기 때문에 action을 사용할 수 없음.. Functin을 써야한다.
+    Coroutine fsmHandle;
+    Func<IEnumerator> m_currentFSM;
+    Func<IEnumerator> CurrentFSM
+    {
+        get { return m_currentFSM; }
+        set
+        {
+            m_currentFSM = value;
+            fsmHandle = null;
+        }
+    }
+    //반환형이 IEnumerator로 있기 때문에 action을 사용할 수 없음.. Functin을 써야한다.
     Player player;
     public float detectRange = 40;
     public float attackRange = 10;
@@ -39,7 +51,7 @@ public class Goblin : MonoBehaviour
         {
             yield return null;
         }
-        currentFSM = ChaseFSM;
+        CurrentFSM = ChaseFSM;
     }
 
     public float speed = 34;
@@ -67,12 +79,12 @@ public class Goblin : MonoBehaviour
 
             if ((Vector3.Distance(transform.position, player.transform.position) < attackRange))
             {
-                currentFSM = AttackFSM;
+                CurrentFSM = AttackFSM;
                 yield break; //실행하고 있는 코루틴을 빠져나가는 문장
                 //나가면 다음 코루틴 지정한 곳(공격)으로 나간다?
             }
 
-            yield return null; 
+            yield return null;
 
         }
     }
@@ -83,13 +95,39 @@ public class Goblin : MonoBehaviour
     {
         animator.Play("Goblin_Attack");
         yield return new WaitForSeconds(attackApplyTime);
-        if(Vector3.Distance(player.transform.position, transform.position)< attackRange)
+        if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
         {
             player.TakeHit(power);
         }
 
         yield return new WaitForSeconds(attackTime - attackApplyTime);
-        currentFSM = ChaseFSM;
+        CurrentFSM = ChaseFSM;
+    }
+    public float hp = 100;
+    internal void TakeHit(float damage)
+    {
+        hp -= damage;
+        StopCoroutine(fsmHandle);
+
+        CurrentFSM = TakeHitFSM;
+    }
+    public float takeHitTime = 0.3f;
+    private IEnumerator TakeHitFSM()
+    {
+        animator.Play("Goblin_Hit");
+        yield return new WaitForSeconds(takeHitTime);
+
+        if (hp > 0)
+            CurrentFSM = IdleFSM;
+        else
+            CurrentFSM = DeathFSM; //죽을 때 피격모션 1회 플레이 후 죽도록
+    }
+    public float deathTime = 0.5f;
+    private IEnumerator DeathFSM()
+    {
+        animator.Play("Death");
+        yield return new WaitForSeconds(deathTime);
+        Destroy(gameObject);
     }
 }
 
