@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class Player : MonoBehaviour
     [BoxGroup("Jump")] public AnimationCurve jumpYac;
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀의 방향?
     //가상의 평면을 만들어서 그 위에 Ray를 쏘도록 하는 것?
-
+    NavMeshAgent agent;
     public Transform spriteTr;
     SpriteTrailRenderer.SpriteTrailRenderer spriteTrailRenderer;
     //네임스페이스와 클래스의 이름이 같아서 네임스페이스.클래스 이렇게 선언해줬다. using문으로는 네임스페이스와 클래스의 구분이 모호해서
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         normalSpeed = speed;
         animator = GetComponentInChildren<Animator>();
         spriteTr = GetComponentInChildren<SpriteRenderer>().transform; //GetChild해도 자기자신이 우선
@@ -154,23 +156,26 @@ public class Player : MonoBehaviour
         jumpDuration *= jumpTimeMultiply;
         float jumpEndTime = jumpStartTime + jumpDuration;
         float sumEvaluateTime = 0;
-        float previousY = 0;
-
+        float previousY = float.MinValue;
+        agent.enabled = false;
         while (Time.time < jumpEndTime)
         {
             float y = jumpYac.Evaluate(sumEvaluateTime / jumpTimeMultiply); //evaluate는 키와 관계 없이 그래프 전체에 관련된 함수
-            y *= jumpYMultiply;
+            y *= jumpYMultiply * Time.deltaTime;
             transform.Translate(0, y, 0);
             yield return null;
 
-            if (previousY > y)
+            if (previousY > transform.position.y)
             {
                 State = StateType.Fall;
             }
-            previousY = y;
+
+            if (transform.position.y < 0)
+                break;
+            previousY = transform.position.y;
             sumEvaluateTime += Time.deltaTime;
         }
-
+        agent.enabled = true;
         jumpState = JumpStateType.Ground;
         State = StateType.Idle;
     }
@@ -206,12 +211,12 @@ public class Player : MonoBehaviour
                 if (isRightSide)
                 {
                     transform.rotation = Quaternion.Euler(Vector3.zero);
-                    spriteTr.rotation = Quaternion.Euler(45, 0, 0);
+                    //spriteTr.rotation = Quaternion.Euler(45, 0, 0); 이제 부모가 회전한대로 그대로 따라가며 ㄴ돼서 필요없다!
                 }
                 else
                 {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
-                    spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
+                    //spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
                 }
                 if (ChangeableState())
                     State = StateType.Walk;
