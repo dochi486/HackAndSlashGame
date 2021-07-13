@@ -14,7 +14,7 @@ public class Goblin : MonoBehaviour
         player = Player.instance;
 
         currentFSM = IdleFSM;
-        while(true) //FSM을 무한히 반복해서 실행하는 부분
+        while (true) //FSM을 무한히 반복해서 실행하는 부분
         {
             yield return StartCoroutine(currentFSM());
         }
@@ -23,6 +23,15 @@ public class Goblin : MonoBehaviour
     Func<IEnumerator> currentFSM; //반환형이 IEnumerator로 있기 때문에 action을 사용할 수 없음.. Functin을 써야한다.
     Player player;
     public float detectRange = 40;
+    public float attackRange = 10;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     IEnumerator IdleFSM()
     {
         animator.Play("Goblin_Idle");
@@ -37,7 +46,7 @@ public class Goblin : MonoBehaviour
     IEnumerator ChaseFSM()
     {
         animator.Play("Goblin_Run");
-        while(true)
+        while (true)
         {
             Vector3 toPlayerDriection = player.transform.position - transform.position;
             toPlayerDriection.Normalize();
@@ -56,8 +65,26 @@ public class Goblin : MonoBehaviour
                 //spriteTr.rotation = Quaternion.Euler(-45, 180, 0); //부모의 로테이션이 변경되어서 로컬 y축 값도 180으로 변경해야되더라..?
             }
 
-            yield return null; ;
+            if ((Vector3.Distance(transform.position, player.transform.position) < attackRange))
+            {
+                currentFSM = AttackFSM;
+                yield break; //실행하고 있는 코루틴을 빠져나가는 문장
+                //나가면 다음 코루틴 지정한 곳(공격)으로 나간다?
+            }
+
+            yield return null; 
+
         }
+    }
+    public float attackTime = 1;//공격하고 있는 시간
+
+
+    IEnumerator AttackFSM()
+    {
+        animator.Play("Goblin_Attack");
+        yield return new WaitForSeconds(attackTime);
+
+        currentFSM = ChaseFSM;
     }
 }
 
