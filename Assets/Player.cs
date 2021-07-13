@@ -35,13 +35,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (State != StateType.Attack)
+        if (IsMoveableState())
         {
             Move();
             Jump();
         }
         bool isSucceedDash = Dash();
         Attack(isSucceedDash);
+    }
+
+    private bool IsMoveableState()
+    {
+        if (State == StateType.Attack)
+            return false;
+        if (State == StateType.TakeHit)
+            return false;
+        if (State == StateType.Death)
+            return false;
+
+        return true;
     }
 
     private void Attack(bool isSucceedDash)
@@ -55,9 +67,11 @@ public class Player : MonoBehaviour
         }
     }
     public float attackTime = 1;
+
     IEnumerator AttackCo()
     {
         State = StateType.Attack;
+
         yield return new WaitForSeconds(attackTime);
         State = StateType.Idle;
     }
@@ -93,6 +107,35 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    public float hp = 100;
+    internal void TakeHit(int damage)
+    {
+        if (State == StateType.Death)
+            return;
+
+        hp -= damage;
+        StartCoroutine(TakeHitCo());
+    }
+    public float deathTime = 0.3f;
+    IEnumerator DeathCo()
+    {
+        State = StateType.Death;
+        yield return new WaitForSeconds(deathTime);
+        Debug.LogWarning("게임 종료");
+    }
+
+    public float takeHitTime = 0.3f;
+    IEnumerator TakeHitCo()
+    {
+        State = StateType.TakeHit;
+        yield return new WaitForSeconds(takeHitTime);
+
+        if (hp > 0)
+            State = StateType.Idle;
+        else
+            StartCoroutine(DeathCo()); //죽을 때 피격모션 1회 플레이 후 죽도록
+    }
+
     [Foldout("Dash")]
     public float dashCoolTime = 2;
     [Foldout("Dash")]
@@ -161,6 +204,8 @@ public class Player : MonoBehaviour
         Fall,
         Attack,
         Dash,
+        TakeHit,
+        Death,
     }
     public StateType state = StateType.Idle;
     StateType State

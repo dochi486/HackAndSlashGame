@@ -77,13 +77,18 @@ public class Goblin : MonoBehaviour
         }
     }
     public float attackTime = 1;//공격하고 있는 시간
-
-
+    public float attackApplyTime = 0.3f; //공격이 실제로 적용되는? 감지되는 시간!
+    public int power = 10;
     IEnumerator AttackFSM()
     {
         animator.Play("Goblin_Attack");
-        yield return new WaitForSeconds(attackTime);
+        yield return new WaitForSeconds(attackApplyTime);
+        if(Vector3.Distance(player.transform.position, transform.position)< attackRange)
+        {
+            player.TakeHit(power);
+        }
 
+        yield return new WaitForSeconds(attackTime - attackApplyTime);
         currentFSM = ChaseFSM;
     }
 }
