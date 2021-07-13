@@ -18,7 +18,7 @@ public class FollowTargetCamera : MonoBehaviour
         float width = height * camera.aspect;
 
         offset = target.position - transform.position;
-        offset.x = 0; //왜 바꿨더라????
+        offset.x = 0; //플레이어가 가장자리에 있더라도 카메라 위치는 중앙에서 시작?
         minX = width / 2 + moveableArea.transform.position.x + moveableArea.center.x - moveableArea.size.x / 2;
         maxX = -width / 2 + moveableArea.transform.position.x + moveableArea.center.x + moveableArea.size.x / 2;
 
