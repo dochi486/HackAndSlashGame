@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ public class Goblin : MonoBehaviour
     //Player가 다가오면 추격 , 추격할 때 플레이어와 닿는 거리면 공격 -> 아이들코루틴으로 만들 예정
     Animator animator;
     Coroutine fsmHandle;
+    SpriteRenderer spriteRenderer;
     IEnumerator Start()
     {
         animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = Player.instance;
 
         CurrentFSM = IdleFSM;
@@ -78,7 +81,7 @@ public class Goblin : MonoBehaviour
             if ((Vector3.Distance(transform.position, player.transform.position) < attackRange))
             {
                 CurrentFSM = AttackFSM;
-                yield break; 
+                yield break;
                 //실행하고 있는 코루틴을 빠져나가는 문장
                 //나가면 다음 코루틴 지정한 곳(공격)으로 나간다?
             }
@@ -123,13 +126,24 @@ public class Goblin : MonoBehaviour
     {
         PlayAnimation("Death");
         yield return new WaitForSeconds(deathTime);
-        Destroy(gameObject);
+
+        spriteRenderer.DOFade(0, 1).OnComplete(() =>
+        {
+
+            Destroy(gameObject);
+        });
+        //반환도 없고 파라미터도 없는 함수라는 의미
     }
+
+    //void DestroySelf()
+    //{
+    //    Destroy(gameObject);
+    //}
 
     void PlayAnimation(string clipName)
     {
         //Debug.Log(clipName);
-        animator.Play(clipName,0 ,0); 
+        animator.Play(clipName, 0, 0);
         //애니메이터의 노드의 이름(클립의 이름과는 다름), 애니메이터 레이어의 인덱스(인덱스는 0부터 시작),  시작위치? 노멀라이즈드타임
     }
 }
