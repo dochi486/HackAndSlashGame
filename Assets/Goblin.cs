@@ -128,7 +128,7 @@ public class Goblin : MonoBehaviour
 
     void PlayAnimation(string clipName)
     {
-        Debug.Log(clipName);
+        //Debug.Log(clipName);
         animator.Play(clipName,0 ,0); 
         //애니메이터의 노드의 이름(클립의 이름과는 다름), 애니메이터 레이어의 인덱스(인덱스는 0부터 시작),  시작위치? 노멀라이즈드타임
     }
