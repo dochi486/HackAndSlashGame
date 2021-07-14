@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 1176204707}
   - component: {fileID: 1176204706}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TitleCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,7 +550,6 @@ GameObject:
   - component: {fileID: 1216880470}
   - component: {fileID: 1216880468}
   - component: {fileID: 1216880469}
-  - component: {fileID: 1216880471}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -659,19 +658,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216880466}
   m_CullTransparentMesh: 1
---- !u!114 &1216880471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216880466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19e2ce3dea9d9b246b7893406789b369, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadSceneName: Stage1
 --- !u!1 &1494180041
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1519960550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -801,7 +787,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &2006762365
 GameObject:
