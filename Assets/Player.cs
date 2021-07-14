@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         var enemyColliders = Physics.OverlapSphere(attackCollider.transform.position, attackCollider.radius, enemyLayer);
             foreach (var item in enemyColliders)
         {
-            item.GetComponent<Goblin>().TakeHit(power);
+            item.GetComponent<Monster>().TakeHit(power);
         } //별로 많이 호출 안하기 때문에 오버랩 스피어를 사용해도 괜찮다. 
 
         //Collider[] colliders = new Collider[10]; //nonAlloc으로 하면 메모리 비용은 싸지만 정해져있는 카운트만큼만 사용할 수 있어서 어렵다

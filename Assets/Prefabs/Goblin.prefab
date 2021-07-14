@@ -105,9 +105,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995644201706546769}
-  - component: {fileID: 1603668775}
   - component: {fileID: 9103408903589215888}
   - component: {fileID: 1603668776}
+  - component: {fileID: 6969802120595666858}
   m_Layer: 6
   m_Name: Goblin
   m_TagString: Untagged
@@ -131,27 +131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603668775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2181160928102191385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa66f3f017e2d84f8f456b93b52981f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectRange: 30
-  attackRange: 10
-  speed: 20
-  attackTime: 1
-  attackApplyTime: 0.3
-  power: 10
-  hp: 100
-  takeHitTime: 0.3
-  deathTime: 0.5
 --- !u!195 &9103408903589215888
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,7 +140,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2181160928102191385}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.98
+  m_Radius: 3.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -188,6 +167,27 @@ CapsuleCollider:
   m_Height: 12.09
   m_Direction: 1
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &6969802120595666858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2181160928102191385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f580d6c73a8d14ebb844edd2f63bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 20
+  attackRange: 10
+  speed: 34
+  attackTime: 1
+  attackApplyTime: 0.55
+  power: 10
+  hp: 100
+  takeHitTime: 0.3
+  deathTime: 0.5
 --- !u!1 &5366532494262946754
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5141240161811526301}
   - component: {fileID: 703754257769044581}
+  - component: {fileID: 3143573786077948469}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -270,3 +271,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3143573786077948469
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366532494262946754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be3a070446c00f84591c9003ee74d7ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

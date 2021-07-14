@@ -1080,10 +1080,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1603668775, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: detectRange
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 995644201706546769, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1131,10 +1127,6 @@ PrefabInstance:
     - target: {fileID: 2181160928102191385, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
       propertyPath: m_Name
       value: Goblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 9103408903589215888, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
-      propertyPath: m_Radius
-      value: 3.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e494f0bc684847c44a73b4cd314fbf22, type: 3}
