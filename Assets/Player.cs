@@ -307,7 +307,6 @@ public class Player : MonoBehaviour
             dir.Normalize();
 
             if (distance > moveableDistance || State == StateType.Dash ) 
-            //moveableDistance 변경해서 idle walk 변경 반복하던 것 수정할 예쩡.
             {
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 

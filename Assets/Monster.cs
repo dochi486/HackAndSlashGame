@@ -127,6 +127,7 @@ public class Monster : MonoBehaviour
 
         //if (CurrentFSM == DeathFSM)
         //return; //죽기전에 항상 TakeHit를 하는 중이기 때문에 안된다?
+        //일반적으로는 FSM을 사용해서 상태를 판정하지만 지금 이 구조에서는 FSM으로 할 수 없다.
 
         hp -= damage;
         StopCoroutine(fsmHandle);
@@ -166,11 +167,6 @@ public class Monster : MonoBehaviour
         });
         //반환도 없고 파라미터도 없는 함수라는 의미
     }
-
-    //void DestroySelf()
-    //{
-    //    Destroy(gameObject);
-    //}
 
     protected void PlayAnimation(string clipName)
     {
