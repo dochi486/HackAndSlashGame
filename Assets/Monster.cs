@@ -1,10 +1,18 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public static List<Monster> Items = new List<Monster>();
+    //퍼블릭이기 때문에 고블린, 스켈레톤 스크립트에서도 참조가능
+    private void Awake()
+    {
+        Items.Add(this);
+        //Monster를 사용하고 있는 오브젝트를 모두 List에 담는다.
+    }
     //Idle이 기본상태
     //Player가 다가오면 추격 , 추격할 때 플레이어와 닿는 거리면 공격 -> 아이들코루틴으로 만들 예정
     Animator animator;
@@ -135,6 +143,13 @@ public class Monster : MonoBehaviour
     private IEnumerator DeathFSM()
     {
         PlayAnimation("Death");
+        Items.Remove(this);
+        Debug.Log($"남은 몬스터 수 : {Items.Count}");
+        if (Items.Count == 0)
+        {
+            //StageResultUI.instance.Show();
+        }
+        //몬스터가 죽을 때 리스트에서 빠지도록
         yield return new WaitForSeconds(deathTime);
 
         spriteRenderer.DOFade(0, 1).OnComplete(() =>

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     float normalSpeed;
     [BoxGroup("Move")] public float walkDistance = 12; //포인터와 플레이어의 위치가 3이상 차이나면 움직이게끔
     [BoxGroup("Move")] public float stopDistance = 7;
-    [BoxGroup("Move")] public Transform mousePointer;
+    //[BoxGroup("Move")] public Transform mousePointer;
     [BoxGroup("Jump")] public AnimationCurve jumpYac;
     Plane plane = new Plane(new Vector3(0, 1, 0), 0); //두번째 인자 0은 평면을 만드는 노멀라이즈된 방향??
     //가상의 무한한 평면을 만들어서 그 위에 Ray를 쏘고 감지하기 위한 용도
@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
         if (plane.Raycast(ray, out enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            mousePointer.position = hitPoint;
+            //mousePointer.position = hitPoint;
             float distance = Vector3.Distance(hitPoint, transform.position);
 
             float moveableDistance = stopDistance;
