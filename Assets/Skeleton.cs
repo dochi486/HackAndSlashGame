@@ -7,10 +7,11 @@ public class Skeleton : Monster
     //방패 막기 추가 + 공격 타이밍에 랜덤하게 방패 모션
     //방패 모션 중에는 대미지 X 
     //막았다는 이펙트 생성
-
+    public Transform blockEffectPosition;
     override protected void SelectAttackType()
     {
-        if (Random.Range(0, 1f) > 0.5f) //Random.Range(0,1)은 결과가 항상 0이 나오지만 1f로 하면 0~1까지 소수점 범위 사용 가능
+        if (Random.Range(0, 1f) > 0.5f)
+        //Random.Range(0,1)은 결과가 항상 0이 나오지만 1f로 하면 0~1까지 소수점 범위 사용 가능
             CurrentFSM = AttackFSM;
         else
             CurrentFSM = ShieldFSM;
@@ -35,7 +36,8 @@ public class Skeleton : Monster
     {
         if (isDefending)
         {
-            Instantiate(blockEffect, transform.position, Quaternion.identity); //자기 위치에 로테이션 0인 값으로 생성하는 일반적인 코드
+            Instantiate(blockEffect, blockEffectPosition.position, Quaternion.identity); 
+            //자기 위치에 로테이션 0인 값으로 생성하는 일반적인 코드
         }
         else
         {
