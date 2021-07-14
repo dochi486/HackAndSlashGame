@@ -122,6 +122,12 @@ public class Monster : MonoBehaviour
     public float hp = 100;
     virtual public void TakeHit(float damage)
     {
+        if (hp < 0)
+            return;
+
+        //if (CurrentFSM == DeathFSM)
+        //return; //죽기전에 항상 TakeHit를 하는 중이기 때문에 안된다?
+
         hp -= damage;
         StopCoroutine(fsmHandle);
         CurrentFSM = TakeHitFSM;
@@ -148,6 +154,7 @@ public class Monster : MonoBehaviour
         if (Items.Count == 0)
         {
             //StageResultUI.instance.Show();
+            //몬스터가 0마리이면 스테이지 결과를 표시하는 함수
         }
         //몬스터가 죽을 때 리스트에서 빠지도록
         yield return new WaitForSeconds(deathTime);
