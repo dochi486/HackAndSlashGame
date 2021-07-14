@@ -60,6 +60,7 @@ public class Skeleton : Monster
 
         Direction myDirection = transform.rotation.eulerAngles.y == 180 ? Direction.Left : Direction.Right;
         //180도이면 스켈레톤이 왼쪽을 보고 있다. 0도일때는 오른쪽!
+        //transform.rotation은 쿼터니언이기 때문에 오일러앵글로 바꿔줘야 우리가 일반적으로 사용하는 각도체꼐로 변환할 수 있다. 
         if (myDirection == Direction.Right)
         {
             //스켈레톤이 오른쪽을 보고 있을 때 플레이어가 왼쪽에서 공격한다면 block실패
