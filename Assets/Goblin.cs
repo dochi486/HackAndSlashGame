@@ -46,7 +46,7 @@ public class Goblin : MonoBehaviour
     }
     IEnumerator IdleFSM()
     {
-        animator.Play("Idle");
+        PlayAnimation("Idle");
         while (Vector3.Distance(transform.position, player.transform.position) > detectRange)
         {
             yield return null;
@@ -57,8 +57,8 @@ public class Goblin : MonoBehaviour
     public float speed = 34;
     IEnumerator ChaseFSM()
     {
-        animator.Play("Run");
-        yield return null;
+        PlayAnimation("Run");
+        //yield return null;
         while (true)
         {
             Vector3 toPlayerDriection = player.transform.position - transform.position;
@@ -90,7 +90,7 @@ public class Goblin : MonoBehaviour
     public int power = 10;
     IEnumerator AttackFSM()
     {
-        animator.Play("Attack");
+        PlayAnimation("Attack");
         yield return new WaitForSeconds(attackApplyTime);
         if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
         {
@@ -110,7 +110,7 @@ public class Goblin : MonoBehaviour
     public float takeHitTime = 0.3f;
     private IEnumerator TakeHitFSM()
     {
-        animator.Play("Hit");
+        PlayAnimation("Hit");
         yield return new WaitForSeconds(takeHitTime);
 
         if (hp > 0)
@@ -121,9 +121,17 @@ public class Goblin : MonoBehaviour
     public float deathTime = 0.5f;
     private IEnumerator DeathFSM()
     {
-        animator.Play("Death");
+        PlayAnimation("Death");
         yield return new WaitForSeconds(deathTime);
         Destroy(gameObject);
     }
+
+    void PlayAnimation(string clipName)
+    {
+        Debug.Log(clipName);
+        animator.Play(clipName,0 ,0); 
+        //애니메이터의 노드의 이름(클립의 이름과는 다름), 애니메이터 레이어의 인덱스(인덱스는 0부터 시작),  시작위치? 노멀라이즈드타임
+    }
 }
+
 
