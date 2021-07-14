@@ -40,7 +40,7 @@ public class Skeleton : Monster
     public override void TakeHit(float damage)
     {
         bool succeedBlock = SucceedBlock();
-        if (isDefending)
+        if (succeedBlock)
         {
             Instantiate(blockEffect, blockEffectPosition.position, Quaternion.identity);
             //자기 위치에 로테이션 0인 값으로 생성하는 일반적인 코드
@@ -56,15 +56,15 @@ public class Skeleton : Monster
         if (isDefending == false)
             return false;
 
-        bool isInFront = false; //플레이어가 앞에 있는지 체크하는 변수
+        //bool isInFront = false; //플레이어가 앞에 있는지 체크하는 변수
 
         Direction myDirection = transform.rotation.eulerAngles.y == 180 ? Direction.Left : Direction.Right;
         //180도이면 스켈레톤이 왼쪽을 보고 있다. 0도일때는 오른쪽!
         if (myDirection == Direction.Right)
         {
             //스켈레톤이 오른쪽을 보고 있을 때 플레이어가 왼쪽에서 공격한다면 block실패
-            if (player.transform.position.x - transform.position.x < 0) 
-            //인스펙터에서 포지션의 x값을 확인하면서 뺀 값이 음수이면 어떻게 되는지 확인할 수 있다.
+            if (player.transform.position.x - transform.position.x < 0)
+                //인스펙터에서 포지션의 x값을 확인하면서 뺀 값이 음수이면 어떻게 되는지 확인할 수 있다.
                 return false;
         }
         else
