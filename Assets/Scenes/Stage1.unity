@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5190892fe38fe647a296449849a55a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 1
 --- !u!4 &1378224259
 Transform:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0807c2e343bef634bab641abc492a646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageID: -1
+  StageID: 1
   sceneType: 1
 --- !u!4 &1857229933
 Transform:
@@ -1391,6 +1392,12 @@ PrefabInstance:
     - target: {fileID: 335656814, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942834583164397417, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6808426623050430243, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
       propertyPath: m_IsActive

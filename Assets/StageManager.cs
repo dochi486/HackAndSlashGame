@@ -35,7 +35,13 @@ public class StageManager : MonoBehaviour
         //OnComplete람다식으로 쉬지 않는 이유는 쉬어야하는 부분이 많기 때문에 람다식보다 코루틴으로 쉬는 게 더 직관적이다. 
 
         //스테이지 이름 표시 "Stage 1"
-        string stageName = "Stage" + SceneProperty.instance.StageID;
+     
+        StageInfo stageInfo = GameData.stageInfoMap[SceneProperty.instance.StageID];
+        //GameData.instance.stageInfoMap[SceneProperty.instance.StageID];
+        string stageName = stageInfo.titleString;
+
+
+        /*"Stage" + SceneProperty.instance.StageID;*/
 
         StageCanvas.instance.stageNameText.text = stageName;
         //2초 쉬고 플레이어를 움직일 수 있게 
