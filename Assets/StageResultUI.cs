@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class StageResultUI : BaseUI<StageResultUI>
@@ -20,7 +20,7 @@ public class StageResultUI : BaseUI<StageResultUI>
 
     private void LoadNextStage()
     {
-        throw new NotImplementedException();
+        Debug.LogWarning("LoadNextStage");
     }
 
 
