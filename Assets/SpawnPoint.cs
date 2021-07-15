@@ -39,6 +39,4 @@ public class SpawnPoint : MonoBehaviour
         }
         Instantiate(Resources.Load(spawnPrefabName), transform.position, Quaternion.identity);
     }
-
-
 }

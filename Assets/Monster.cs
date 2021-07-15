@@ -23,6 +23,7 @@ public class Monster : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = Player.instance;
+
         CurrentFSM = IdleFSM;
 
         while (true) //FSM을 무한히 반복해서 실행하는 부분
@@ -74,9 +75,9 @@ public class Monster : MonoBehaviour
     IEnumerator IdleFSM()
     {
         PlayAnimation("Idle");
-        while (Vector3.Distance(transform.position, player.transform.position) > detectRange)
-        //무한루프 도는 구간! 
+        
         //한 프레임이라도 쉬어야 에러 로그가 뜬다..
+        while (Vector3.Distance(transform.position, player.transform.position) > detectRange)//무한루프 도는 구간! 
         {
             yield return null;
         }
@@ -87,7 +88,6 @@ public class Monster : MonoBehaviour
     protected IEnumerator ChaseFSM()
     {
         PlayAnimation("Run");
-        //yield return null;
         while (true)
         {
             Vector3 toPlayerDriection = player.transform.position - transform.position;
@@ -180,7 +180,6 @@ public class Monster : MonoBehaviour
 
         spriteRenderer.DOFade(0, 1).OnComplete(() =>
         {
-
             Destroy(gameObject);
         });
         //반환도 없고 파라미터도 없는 함수라는 의미

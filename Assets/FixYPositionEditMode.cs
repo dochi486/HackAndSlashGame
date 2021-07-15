@@ -3,14 +3,12 @@
 [ExecuteInEditMode]
 public class FixYPositionEditMode : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         if (Application.isPlaying) //플레이 중이면 항상 true로 나오는 문장!
             Destroy(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         var pos = transform.position;
