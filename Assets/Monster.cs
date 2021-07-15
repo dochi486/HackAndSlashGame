@@ -78,7 +78,7 @@ public class Monster : MonoBehaviour
     IEnumerator IdleFSM()
     {
         PlayAnimation("Idle");
-        
+
         //한 프레임이라도 쉬어야 에러 로그가 뜬다..
         while (Vector3.Distance(transform.position, player.transform.position) > detectRange)//무한루프 도는 구간! 
         {
@@ -143,7 +143,7 @@ public class Monster : MonoBehaviour
     public float hp = 100;
     virtual public void TakeHit(float damage)
     {
-        if (hp < 0)
+        if (hp <= 0)
             return;
 
         //if (CurrentFSM == DeathFSM)
@@ -151,7 +151,10 @@ public class Monster : MonoBehaviour
         //일반적으로는 FSM을 사용해서 상태를 판정하지만 지금 이 구조에서는 FSM으로 할 수 없다.
 
         hp -= damage;
-        StopCoroutine(fsmHandle);
+
+        if (fsmHandle != null)
+            StopCoroutine(fsmHandle);
+
         CurrentFSM = TakeHitFSM;
     }
 
