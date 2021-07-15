@@ -11,10 +11,10 @@ public class StageResultUI : BaseUI<StageResultUI>
     void Start()
     {
 
-        gradeText = transform.Find("StageResultUI/GradeText").GetComponent<Text>();
-        eneiesKilledText = transform.Find("StageResultUI/EneiesKilledText").GetComponent<Text>();
-        damageTakenText = transform.Find("StageResultUI/DamageTakenText").GetComponent<Text>();
-        continueButton = transform.Find("StageResultUI/ContinueButton").GetComponent<Button>();
+        gradeText = transform.Find("GradeText").GetComponent<Text>();
+        eneiesKilledText = transform.Find("EneiesKilledText").GetComponent<Text>();
+        damageTakenText = transform.Find("DamageTakenText").GetComponent<Text>();
+        continueButton = transform.Find("ContinueButton").GetComponent<Button>();
         continueButton.AddListener(this, LoadNextStage);
     }
 
