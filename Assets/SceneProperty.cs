@@ -20,6 +20,9 @@ public class SceneProperty : MonoBehaviour
 
         if (PersistCanvas.instance == null)
             Instantiate(Resources.Load("PersistCanvas")); //초기화 하는 방법 중에 좀 불편한 방법?
+
+        if (GameData.instance == null)
+            Instantiate(Resources.Load("GameData"));
     }
     private void OnDestroy()
     {

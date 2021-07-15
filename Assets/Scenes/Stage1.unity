@@ -708,6 +708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 1
+  inEaseType: 7
+  outEaseType: 30
 --- !u!4 &1378224259
 Transform:
   m_ObjectHideFlags: 0

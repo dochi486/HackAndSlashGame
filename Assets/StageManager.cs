@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using NaughtyAttributes;
 
 /// <summary>
 /// 스테이지에서 발생하는 모든 이벤트를 관리하고 스테이지가 끝나면 같이 파괴된다.
@@ -23,6 +24,9 @@ public class StageManager : MonoBehaviour
     {
         instance = null;
     }
+    public Ease inEaseType = Ease.InBounce;
+    public Ease outEaseType = Ease.OutBounce;
+    [Button]
     IEnumerator Start()
     {
         //화면 어두운 상태에서 2초동안 밝아지도록
@@ -42,9 +46,15 @@ public class StageManager : MonoBehaviour
 
 
         /*"Stage" + SceneProperty.instance.StageID;*/
+        StageCanvas.instance.stageNameText.transform.localPosition = new Vector3(-1000, 0, 0);
+        StageCanvas.instance.stageNameText.transform.DOLocalMoveX(0, 0.5f).SetEase(inEaseType);
+
 
         StageCanvas.instance.stageNameText.text = stageName;
         //2초 쉬고 플레이어를 움직일 수 있게 
+        yield return new WaitForSeconds(2f);
+
+        StageCanvas.instance.stageNameText.transform.DOLocalMoveX(-1000f, 0.5f).SetEase(outEaseType);
 
         gameState = GameStateType.Playing;//움직일 수 있는 상태
     }
