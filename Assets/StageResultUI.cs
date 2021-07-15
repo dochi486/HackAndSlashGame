@@ -32,5 +32,4 @@ public class StageResultUI : BaseUI<StageResultUI>
         damageTakenText.text = StageManager.Instance.damageTaken.ToString();
         gradeText.text = "A";
     }
-
 }

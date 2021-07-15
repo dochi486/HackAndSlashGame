@@ -25,7 +25,7 @@ public class SpawnPoint : MonoBehaviour
                 break;
             case SpawnType.Boss: spawnPrefabName = "Boss";
                 break;
-            default: spawnPrefabName = ""; //최적화 측면에서 스위치문 안에 할당하는 것이 좋다
+            default: spawnPrefabName = ""; //최적화 측면에서 스위치문 안에 디폴트 빈 스트링 할당하는 것이 좋다
                 break; //default도 break필요
         }
         Instantiate(Resources.Load(spawnPrefabName), transform.position, Quaternion.identity);

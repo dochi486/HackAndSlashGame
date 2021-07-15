@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameData : MonoBehaviour
 {
     public static GameData instance;
-    [SerializeField]private List<StageInfo> stageInfos; //다른 스크립트에서 수정 안되도록 프라이빗으로 바꾸고 인스펙터에서 디버깅은 가능하도록 시리얼라이즈드 해준다.
+    [SerializeField]private List<StageInfo> stageInfos; 
+    //다른 스크립트에서 수정 안되도록 프라이빗으로 바꾸고 인스펙터에서 디버깅은 가능하도록 시리얼라이즈드 해준다.
     public static Dictionary<int, StageInfo> stageInfoMap = new Dictionary<int, StageInfo>();
 
     private void Awake()
