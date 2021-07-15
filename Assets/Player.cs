@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
     #region Dash
     [Foldout("Dash")]
-    public float dashableDistance = 10;
+    public float dashableDistance = 10; //대쉬에 필요한 드래그 길이
     [Foldout("Dash")]
     public float dashableTime = 0.4f; //0.4초 안에 드래그해서 KeyUp이 발생해야 dash가 되는 시간을 의미함
     float mouseDownTime; //대쉬 드래그로 구현하기 위해서 마우스를 눌렀을 때의 시간과 포지션 담을 변수
