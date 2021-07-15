@@ -11,27 +11,41 @@ using DG.Tweening;
 /// </summary>
 public class StageManager : MonoBehaviour
 {
+    public static StageManager instance;
+    public GameStateType gameState = GameStateType.Ready;
+
+    private void Awake()
+    {
+        instance = this;
+        gameState = GameStateType.Ready;
+    }
+    private void OnDestroy()
+    {
+        instance = null;
+    }
     IEnumerator Start()
     {
         //화면 어두운 상태에서 2초동안 밝아지도록
         CanvasGroup blackScreen = PersistCanvas.instance.blackScreen;
         blackScreen.gameObject.SetActive(true);
         blackScreen.alpha = 1;
-        blackScreen.DOFade(1, 1.7f);
+        blackScreen.DOFade(0, 1.7f);
 
-        yield return new WaitForSeconds(1.7f); 
+        yield return new WaitForSeconds(1.7f);
         //OnComplete람다식으로 쉬지 않는 이유는 쉬어야하는 부분이 많기 때문에 람다식보다 코루틴으로 쉬는 게 더 직관적이다. 
 
         //스테이지 이름 표시 "Stage 1"
+        string stageName = "Stage" + SceneProperty.instance.StageID;
 
-
+        StageCanvas.instance.stageNameText.text = stageName;
         //2초 쉬고 플레이어를 움직일 수 있게 
 
-
+        gameState = GameStateType.Playing;//움직일 수 있는 상태
     }
-
-    void Update()
-    {
-        
-    }
+}
+public enum GameStateType
+{
+    Playing,
+    Ready,
+    StageEnd
 }
