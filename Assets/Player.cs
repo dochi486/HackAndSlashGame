@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (StageManager.instance.gameState != GameStateType.Playing)
+        if (StageManager.Instance.gameState != GameStateType.Playing)
             return;
 
         if (IsMoveableState())
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         if (State == StateType.Death)
             return;
 
+        StageManager.Instance.damageTaken += damage;
         hp -= damage;
         StartCoroutine(TakeHitCo());
     }

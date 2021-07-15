@@ -20,7 +20,7 @@ public class Monster : MonoBehaviour
     SpriteRenderer spriteRenderer;
     IEnumerator Start()
     {
-        while (StageManager.instance.gameState != GameStateType.Playing)
+        while (StageManager.Instance.gameState != GameStateType.Playing)
             yield return null;
 
         animator = GetComponentInChildren<Animator>();
@@ -171,11 +171,15 @@ public class Monster : MonoBehaviour
     private IEnumerator DeathFSM()
     {
         PlayAnimation("Death");
+
         Items.Remove(this);
+
+        StageManager.Instance.enemiesKilledCount++;
+
         Debug.Log($"남은 몬스터 수 : {Items.Count}");
         if (Items.Count == 0)
         {
-            //StageResultUI.instance.Show();
+            StageResultUI.Instance.Show();
             //몬스터가 0마리이면 스테이지 결과를 표시하는 함수
         }
         //몬스터가 죽을 때 리스트에서 빠지도록

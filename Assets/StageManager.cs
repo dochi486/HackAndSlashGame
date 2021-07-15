@@ -11,18 +11,19 @@ using UnityEngine;
 /// 2. 스테이지 시작할 때 화면이 밝아지도록
 /// 3. 몬스터 로드
 /// </summary>
-public class StageManager : MonoBehaviour
+public class StageManager : SingletonMonoBehavior<StageManager>
 {
-    public static StageManager instance;
+    //public static StageManager Instance;
     public GameStateType gameState = GameStateType.Ready;
 
     public int sumMonsterCount;
     public int enemiesKilledCount;
     public int damageTaken;
 
-    private void Awake()
+    new private void Awake()
     {
-        instance = this;
+        base.Awake(); //부모의 Awake에서 instance생성
+        //Instance = this;
         gameState = GameStateType.Ready;
 
         List<SpawnPoint> allSpawnPoints = new List<SpawnPoint>(FindObjectsOfType<SpawnPoint>());
@@ -30,9 +31,9 @@ public class StageManager : MonoBehaviour
         sumMonsterCount = allSpawnPoints.Where(x => x.spawnType != SpawnType.Player).Count();
         //리스트로 받았기 때문에 타입에 따른 분류를 Linq로 쉽게 할 수 있다!
     }
-    private void OnDestroy()
+    new private void OnDestroy()
     {
-        instance = null;
+        //Instance = null;
     }
     public Ease inEaseType = Ease.InBounce;
     public Ease outEaseType = Ease.OutBounce;

@@ -23,5 +23,11 @@ public class StageResultUI : BaseUI<StageResultUI>
         Debug.LogWarning("LoadNextStage");
     }
 
+    protected override void OnShow()
+    {
+        eneiesKilledText.text = ($"{StageManager.Instance.enemiesKilledCount.ToString()} / {StageManager.Instance.sumMonsterCount}");
+        damageTakenText.text = StageManager.Instance.damageTaken.ToString();
+        gradeText.text = "A";
+    }
 
 }
