@@ -11,11 +11,11 @@ public enum SpawnType
     Skeleton,
     Boss
 }
+
 public class SpawnPoint : MonoBehaviour
 {
-
     public SpawnType spawnType;
-    // Start is called before the first frame update
+
     void Awake()
     {
         string spawnPrefabName; //스폰되는 프리팹 이름
