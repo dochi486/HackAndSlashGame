@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FightArea : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class FightArea : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
 
         var SpawnPoints = GetComponentsInChildren<SpawnPoint>();
-        foreach (var item in SpawnPoints)
+        foreach(var item in SpawnPoints)
         {
             item.gameObject.SetActive(false);
         }
