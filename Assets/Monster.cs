@@ -23,13 +23,29 @@ public class Monster : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         player = Player.instance;
-
         CurrentFSM = IdleFSM;
+
         while (true) //FSM을 무한히 반복해서 실행하는 부분
         {
-            fsmHandle = StartCoroutine(CurrentFSM());
-            while (fsmHandle != null)
-                yield return null;
+            //try 
+            //에러가 예상되는 구간에 try~catch로 에러를 잡을 수 있으나 이 경우에는 이 부분에서 루프 도는 게 아니기 때문에 try~catch로 확인 불가
+            {
+                var previousFSM = CurrentFSM;
+
+                fsmHandle = StartCoroutine(CurrentFSM());
+                //}
+                //catch (Exception e)
+                //{
+                //    Debug.LogError(e);
+                //}
+
+                if (fsmHandle == null && previousFSM == CurrentFSM) //바로 전의 FSM과 현재의 FSM이 같으면 한 프레임 쉬고 에러 로그를 찍도록
+                    //기존의 무한루프 도는 에러를 보완한 부분
+                    yield return null;
+
+                while (fsmHandle != null)
+                    yield return null;
+            }
         }
     }
 
@@ -59,6 +75,8 @@ public class Monster : MonoBehaviour
     {
         PlayAnimation("Idle");
         while (Vector3.Distance(transform.position, player.transform.position) > detectRange)
+        //무한루프 도는 구간! 
+        //한 프레임이라도 쉬어야 에러 로그가 뜬다..
         {
             yield return null;
         }
