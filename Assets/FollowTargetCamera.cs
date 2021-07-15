@@ -16,6 +16,7 @@ public class FollowTargetCamera : MonoBehaviour
 
         float height = 2f * camera.orthographicSize;
         float width = height * camera.aspect;
+        target = Player.instance.transform;
 
         offset = target.position - transform.position;
         offset.x = 0; //플레이어가 가장자리에 있더라도 카메라 위치는 중앙에서 시작?
