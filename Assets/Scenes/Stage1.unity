@@ -1519,6 +1519,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 352.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 53.996704
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339971019667209270, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
 --- !u!1001 &8521961568484260193
