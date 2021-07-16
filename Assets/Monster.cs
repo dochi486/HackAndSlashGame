@@ -182,7 +182,7 @@ public class Monster : MonoBehaviour
         Debug.Log($"남은 몬스터 수 : {Items.Count}");
         if (Items.Count == 0)
         {
-            StageResultUI.Instance.Show();
+            StageResultUI.Instance.Show(StageManager.Instance.enemiesKilledCount, StageManager.Instance.sumMonsterCount, StageManager.Instance.damageTaken); ;
             //몬스터가 0마리이면 스테이지 결과를 표시하는 함수
         }
         //몬스터가 죽을 때 리스트에서 빠지도록
