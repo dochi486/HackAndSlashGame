@@ -36,7 +36,7 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     [Button] //NaughtyAttributes애셋으로 Start함수만 다시 실행할 수 있는 버튼 인스펙터에 생성
     IEnumerator Start()
     {
-        CanvasGroup blackScreen = PersistCanvas.instance.blackScreen;
+        CanvasGroup blackScreen = PersistCanvas.Instance.blackScreen;
         blackScreen.gameObject.SetActive(true);
         blackScreen.alpha = 1;
         blackScreen.DOFade(0, 1.7f); //화면 어두운 상태에서 1.7초동안 밝아지도록

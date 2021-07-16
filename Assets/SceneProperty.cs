@@ -11,15 +11,14 @@ public class SceneProperty : MonoBehaviour
     {
         Title,
         Stage,
-
     }
     public SceneType sceneType = SceneType.Stage;
     private void Awake()
     {
         instance = this;
 
-        if (PersistCanvas.instance == null)
-            Instantiate(Resources.Load("PersistCanvas")); //초기화 하는 방법 중에 좀 불편한 방법?
+        //if (PersistCanvas.instance == null)
+        //    Instantiate(Resources.Load("PersistCanvas")); //초기화 하는 방법 중에 좀 불편한 방법?
 
         if (GameData.instance == null)
             Instantiate(Resources.Load("GameData"));

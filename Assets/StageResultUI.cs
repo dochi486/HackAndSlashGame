@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class StageResultUI : BaseUI<StageResultUI>
 {
     public override string HierarchyPath => "StageCanvas/StageResultUI"; //하이어라키에 해당 오브젝트가 없으면 생성하게 하는 로직
+    //캔버스이름이 원래 Canvas(기본이름)가 아닐 때 작성..
 
     Text gradeText;
     Text eneiesKilledText;

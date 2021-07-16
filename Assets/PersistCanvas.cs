@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistCanvas : MonoBehaviour
+public class PersistCanvas : SingletonMonoBehavior<PersistCanvas>
 {
-    public static PersistCanvas instance;
+    public override string HierarchyPath => "PersistCanvas";
     public CanvasGroup blackScreen;
 
-    private void Awake()
+    new private void Awake()
     {
-        instance = this;
+        base.Awake();
 
         DontDestroyOnLoad(gameObject);
         blackScreen = transform.Find("BlackScreen").GetComponent<CanvasGroup>();
     }
-
 }

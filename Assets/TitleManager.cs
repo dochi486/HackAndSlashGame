@@ -12,7 +12,7 @@ public class TitleManager : MonoBehaviour
 
         //blackScreen = GameObject.Find("PersistCanvas").transform.Find("BlackScreen").GetComponent<CanvasGroup>();
         //검은 화면에서 페이드인으로 시작
-        blackScreen = PersistCanvas.instance.blackScreen;
+        blackScreen = PersistCanvas.Instance.blackScreen;
 
         blackScreen.gameObject.SetActive(true);
         blackScreen.alpha = 1; //0일 때는 안보이고, 1일 때는 보이는 것!!
