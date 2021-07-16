@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(attackApplyTime);
 
         var enemyColliders = Physics.OverlapSphere(attackCollider.transform.position, attackCollider.radius, enemyLayer);
-            foreach (var item in enemyColliders)
+        foreach (var item in enemyColliders)
         {
             item.GetComponent<Monster>().TakeHit(power);
         } //별로 많이 호출 안하기 때문에 오버랩 스피어를 사용해도 괜찮다. 
@@ -310,7 +310,7 @@ public class Player : MonoBehaviour
 
             dir.Normalize();
 
-            if (distance > moveableDistance || State == StateType.Dash ) 
+            if (distance > moveableDistance || State == StateType.Dash)
             {
                 transform.Translate(dir * speed * Time.deltaTime, Space.World);
 
