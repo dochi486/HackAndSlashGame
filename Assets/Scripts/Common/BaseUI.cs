@@ -64,6 +64,7 @@ where T : SingletonBase
         if (MenuHistory.Count > MaxHistoryCount)
             MenuHistory.RemoveAt(0);
     }
+    
 
     override protected void OnDisable()
     {
