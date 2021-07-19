@@ -1519,8 +1519,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 258647778, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+--- !u!1 &7339971018569298731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7339971019108546237, guid: 074c0c9a7c986584f9fde4e94d9275c9, type: 3}
+  m_PrefabInstance: {fileID: 7339971018569298730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7339971018569298732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339971018569298731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a841454d6541d114ea4b5f349ae2bca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  completeUiInite: 0
 --- !u!1001 &8521961568484260193
 PrefabInstance:
   m_ObjectHideFlags: 0
