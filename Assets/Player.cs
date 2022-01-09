@@ -276,7 +276,6 @@ public class Player : MonoBehaviour
                 return;
             state = value;
             animator.Play(state.ToString());
-
         }
     }
     #endregion State
@@ -287,7 +286,6 @@ public class Player : MonoBehaviour
             return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
 
         float enter = 0.0f;
         if (plane.Raycast(ray, out enter))
@@ -324,6 +322,7 @@ public class Player : MonoBehaviour
             }
 
             bool isRightSide = dir.x > 0;
+
             if (isRightSide)
             {
                 transform.rotation = Quaternion.Euler(Vector3.zero);
