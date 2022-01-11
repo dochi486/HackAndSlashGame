@@ -230,6 +230,7 @@ public class Player : MonoBehaviour
         float sumEvaluateTime = 0;
         float previousY = float.MinValue;
         agent.enabled = false;
+
         while (Time.time < jumpEndTime)
         {
             float y = jumpYac.Evaluate(sumEvaluateTime / jumpTimeMultiply); //evaluate는 키와 관계 없이 그래프 전체에 관련된 함수
@@ -247,6 +248,7 @@ public class Player : MonoBehaviour
             previousY = transform.position.y;
             sumEvaluateTime += Time.deltaTime;
         }
+
         agent.enabled = true;
         jumpState = JumpStateType.Ground;
         State = StateType.Idle;
